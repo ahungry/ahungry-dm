@@ -13,6 +13,8 @@
     (swap! *state assoc-in [:username] (:fx/event e))
     ::password-changed
     (swap! *state assoc-in [:password] (:fx/event e))
+    ::submit
+    (swap! *state assoc-in [:submitted] (:fx/event e))
     ))
 
 (defn text-input [{:keys [text label event-type]}]
@@ -45,6 +47,9 @@
              :text ""
              :label "Password"
              :event-type ::password-changed}
+            {:fx/type :button
+             :text "Login"
+             :on-action {:event/type ::submit}}
             ]}}})
 
 (def renderer

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# -*- mode: shell-mode -*-
+
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+cd $SCRIPTPATH && cd ..
+lein run

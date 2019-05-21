@@ -3,4 +3,4 @@ xephyr-start:
 	Xephyr -ac -br -noreset -screen 800x600 :1
 
 xephyr-run:
-	DISPLAY=:1 lein run
+	DISPLAY=:1 ./bin/ahungry-dm

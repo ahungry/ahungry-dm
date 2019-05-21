@@ -42,8 +42,8 @@
   {:fx/type :stage
    :showing true
    :title "ahungry-dm"
-   :width 300
-   :height 100
+   :width 800
+   :height 600
    :scene
    {:fx/type :scene
     :root {:fx/type :v-box

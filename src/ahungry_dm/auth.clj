@@ -31,6 +31,6 @@
 (defn start-session []
   ;; TODO: Use the xsession - this is a nice debug though
   ;; (fake-start-session)
-  (start-x-server)
-  (Thread/sleep 1000)
+  ;; (start-x-server)
+  ;; (Thread/sleep 1000)
   (real-start-session))

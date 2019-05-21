@@ -2,6 +2,16 @@
 
 # -*- mode: shell-mode -*-
 
+# Start the X server in background
+/bin/bash -c "/usr/bin/X :1 vt01 &"
+
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+echo "The path we are running in is: " $SCRIPTPATH
+
+export DISPLAY=:1
+
+# Wait a moment
+sleep 1
+
 cd $SCRIPTPATH && cd ..
-lein run
+lein run > lein.out.log 2> lein.err.log

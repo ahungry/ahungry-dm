@@ -3,7 +3,8 @@ Description=Ahungry Display Manager
 After=systemd-user-sessions.service
 
 [Service]
-ExecStart=/home/mcarter/src/clojure/ahungry-dm/bin/ahungry-dm
+WorkingDirectory=/home/mcarter/src/clojure/ahungry-dm
+ExecStart=/bin/bash ./bin/ahungry-dm
 
 [Install]
 Alias=ahungry-dm.service

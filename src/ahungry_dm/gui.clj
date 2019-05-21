@@ -2,7 +2,19 @@
   (:require
    [cljfx.api :as fx])
   (:import
+   [net.sf.jpam Pam PamReturnValue PamException]
    [javafx.scene.input KeyCode KeyEvent]))
+
+(defn simple-auth [username password]
+  (let [pam (new Pam)]
+    (. pam (authenticateSuccessful username password))))
+
+(defn auth [username password]
+  (let [pam (new Pam)]
+    (. pam (authenticate username password))))
+
+(defn verbose-auth [username password]
+  (-> (auth username password) .toString))
 
 (def *state (atom {}))
 

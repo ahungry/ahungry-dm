@@ -4,7 +4,9 @@
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [cljfx "1.2.9"]]
+                 [cljfx "1.2.9"]
+                 [net.sf.jpam/jpam "1.1"]
+                 [org.clojars.canweriotnow/jpam-native-deps "1.1.1"]]
   :main ^:skip-aot ahungry-dm.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

@@ -1,22 +1,19 @@
 (ns ahungry-dm.gui
   (:require
-   [cljfx.api :as fx])
+   [cljfx.api :as fx]
+   [ahungry-dm.auth :as auth])
   (:import
-   [net.sf.jpam Pam PamReturnValue PamException]
-   [javafx.scene.input KeyCode KeyEvent]))
-
-(defn simple-auth [username password]
-  (let [pam (new Pam)]
-    (. pam (authenticateSuccessful username password))))
-
-(defn auth [username password]
-  (let [pam (new Pam)]
-    (. pam (authenticate username password))))
-
-(defn verbose-auth [username password]
-  (-> (auth username password) .toString))
+   [javafx.scene.input KeyCode KeyEvent])
+  (:gen-class))
 
 (def *state (atom {}))
+
+(defn maybe-start-session [{:keys [username password]}]
+  (prn *state)
+  (prn "MSS: " username password)
+  (if (auth/simple-auth username password)
+    (auth/start-session)
+    (swap! *state assoc-in [:feedback] "Login failure!")))
 
 (defn event-handler [e]
   (prn "Got an event: " e)
@@ -26,7 +23,9 @@
     ::password-changed
     (swap! *state assoc-in [:password] (:fx/event e))
     ::submit
-    (swap! *state assoc-in [:submitted] (:fx/event e))
+    (do
+      (swap! *state assoc-in [:submitted] (:fx/event e))
+      (maybe-start-session @*state))
     ))
 
 (defn text-input [{:keys [text label event-type]}]
@@ -39,7 +38,7 @@
      :text text
      :on-text-changed {:event/type event-type}}]})
 
-(defn root [{:keys [_]}]
+(defn root [{:keys [feedback]}]
   {:fx/type :stage
    :showing true
    :title "ahungry-dm"
@@ -59,6 +58,8 @@
              :text ""
              :label "Password"
              :event-type ::password-changed}
+            {:fx/type :text-field
+             :text feedback}
             {:fx/type :button
              :text "Login"
              :on-action {:event/type ::submit}}

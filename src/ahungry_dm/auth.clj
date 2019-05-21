@@ -25,9 +25,12 @@
 (defn real-start-session []
   (my-exec "/bin/bash --login ~/.xinitrc"))
 
-(defn start-session []
-  ;; TODO: Use the xsession - this is a nice debug though
-  (fake-start-session))
-
 (defn start-x-server []
   (my-exec "/usr/bin/X :1 vt01"))
+
+(defn start-session []
+  ;; TODO: Use the xsession - this is a nice debug though
+  ;; (fake-start-session)
+  (start-x-server)
+  (Thread/sleep 1000)
+  (real-start-session))

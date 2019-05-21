@@ -1,0 +1,9 @@
+[Unit]
+Description=Ahungry Display Manager
+After=systemd-user-sessions.service
+
+[Service]
+ExecStart=/home/mcarter/src/clojure/ahungry-dm/bin/ahungry-dm
+
+[Install]
+Alias=ahungry-dm.service

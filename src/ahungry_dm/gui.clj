@@ -3,6 +3,7 @@
    [cljfx.api :as fx]
    [ahungry-dm.auth :as auth])
   (:import
+   [javafx.application Platform]
    [javafx.scene.input KeyCode KeyEvent])
   (:gen-class))
 
@@ -72,3 +73,7 @@
 
 (defn main [& args]
   (fx/mount-renderer *state renderer))
+
+(defn main-with-exit [& args]
+  (Platform/setImplicitExit true)
+  (main))

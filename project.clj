@@ -9,4 +9,5 @@
                  [org.clojars.canweriotnow/jpam-native-deps "1.1.1"]]
   :main ^:skip-aot ahungry-dm.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all
+                       :injections [(javafx.application.Platform/exit)]}})
